@@ -11,7 +11,7 @@ const GameSchema = new Schema({
         required: true
     },
     imagePath: String,
-    character: [],
+    characters: [],
     creators: []
 
 });
@@ -33,7 +33,7 @@ Game.count({}, function (err, count) {
             '\n' +
             'Now, conflict is rising across the world again, and the call has gone out to heroes old and new. Are you with us?',
             imagePath: 'https://static-cdn.jtvnw.net/ttv-boxart/Overwatch.jpg',
-            character: ['D.VA' , 'Genji', 'Soldier 76'],
+            characters: ['D.VA' , 'Genji', 'Soldier 76'],
             creators: ['Blizzard']
         }).save();
     }
