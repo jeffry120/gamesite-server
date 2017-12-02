@@ -3,65 +3,57 @@ const routes = express.Router();
 const mongodb = require('../config/mongo.db');
 const games = require('../model/game.model');
 
-routes.get('/recipes', function(req, res) {
+routes.get('/games', function(req, res) {
     res.contentType('application/json');
-    recipes.find({})
-        .then((recipes) => {
-        res.status(200).json({
-            'succes': true,
-            'recipe': recipes
-        });
+    games.find({})
+        .then((games) => {
+        res.status(200).json(games);
         })
         .catch((error) => res.status(400).json(error));
 });
 
 
-routes.get('/recipes/:id', function(req, res) {
+routes.get('/games/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
     console.log(id);
-    recipes.find({_id: id})
-        .then((recipes) => {
-            res.status(200).json({
-                'succes': true,
-                'recipe': recipes
-            });
+    games.find({_id: id})
+        .then((games) => {
+            res.status(200).json(games
+            );
         })
         .catch((error) => res.status(400).json(error));
 });
 
 
-routes.post('/recipes', function(req, res) {
-    const recipeProps = req.body;
+routes.post('/games', function(req, res) {
+    const gameProps = req.body;
 
-    recipes.create(recipeProps)
-        .then((recipes) => {
-        res.status(200).send(recipes)
+    games.create(gameProps)
+        .then((games) => {
+        res.status(200).send(games)
         })
         .catch((error) => res.status(400).json(error))
 });
 
 
-routes.put('/recipes/:id', function(req, res) {
+routes.put('/games/:id', function(req, res) {
     res.contentType('application/json');
-    const recipeId = req.params.id;
-    const recipeProps = req.body;
+    const gameId = req.params.id;
+    const gameProps = req.body;
 
-    recipes.findByIdAndUpdate({_id: recipeId}, recipeProps)
-        .then(()=> recipes.findById({_id: recipeId}))
-        .then(driver => res.send(driver))
+    games.findByIdAndUpdate({_id: gameId}, gameProps)
+        .then(()=> games.findById({_id: gameId}))
+        .then(game => res.send(game))
         .catch((error) => res.status(400).json(error))
 
 });
 
 
-routes.delete('/recipes/:id', function(req, res) {
+routes.delete('/games/:id', function(req, res) {
     const id = req.param('id');
-    recipes.findByIdAndRemove(id)
-        .then((status) => res.status(200).json({
-            'succes': true,
-            'recipe': status
-        }))
+    games.findByIdAndRemove(id)
+        .then((status) => res.status(200).json(status))
         .catch((error) => res.status(400).json(error))
 });
 
