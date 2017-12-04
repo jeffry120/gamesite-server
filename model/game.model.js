@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const CharactersSchema = require('./characters.model')
+const GamecharacterSchema = require('./gamecharacter.model')
 
 const GameSchema = new Schema({
     name: {
@@ -11,7 +13,7 @@ const GameSchema = new Schema({
         required: true
     },
     imagePath: String,
-    characters: [],
+    characters: [GamecharacterSchema],
     creators: []
 
 });
@@ -33,14 +35,28 @@ Game.count({}, function (err, count) {
             '\n' +
             'Now, conflict is rising across the world again, and the call has gone out to heroes old and new. Are you with us?',
             imagePath: 'https://static-cdn.jtvnw.net/ttv-boxart/Overwatch.jpg',
-            characters: ['D.VA' , 'Genji', 'Soldier 76'],
+            characters: [
+                {
+                    name: 'Dva',
+                    description: 'Amazing Robot',
+                    details: []
+                }
+
+            ],
             creators: ['Blizzard']
-        }).save();
+        });
+
+        const character = new CharactersSchema({
+
+            name: 'D.VA',
+            description: 'Love D.VA',
+        });
+        game.characters[0].details.push(character);
+        character.save();
+        game.save();
     }
 
+
  });
-
-
-
 
 module.exports = Game;

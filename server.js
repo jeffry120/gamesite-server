@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongodb = require('./config/mongo.db');
 var gameroutes_v1 = require('./api/game.routes.v1');
+var characterroutes_v1 = require('./api/characters.routes.v1');
 var config = require('./config/env/env');
 
 
@@ -34,6 +35,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/v1', gameroutes_v1);
+app.use('/api/v1', characterroutes_v1)
 
 
 app.use(function (err, req, res, next) {

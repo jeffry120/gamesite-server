@@ -2,11 +2,14 @@ const express = require('express');
 const routes = express.Router();
 const mongodb = require('../config/mongo.db');
 const games = require('../model/game.model');
+const mongoose = require('mongoose');
 
 routes.get('/games', function(req, res) {
     res.contentType('application/json');
     games.find({})
+        .populate('gamecharacter.characters')
         .then((games) => {
+        console.log(games[0].characters[0]);
         res.status(200).json(games);
         })
         .catch((error) => res.status(400).json(error));
@@ -18,8 +21,9 @@ routes.get('/games/:id', function(req, res) {
     const id = req.param('id');
     console.log(id);
     games.find({_id: id})
+        .populate('gamecharacter.characters')
         .then((games) => {
-            res.status(200).json(games
+            res.status(200).send(games
             );
         })
         .catch((error) => res.status(400).json(error));
