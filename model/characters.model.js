@@ -9,7 +9,8 @@ const CharactersSchema = new Schema({
     description:{
         type: String,
         required: true
-    }
+    },
+    imagePath: String,
 });
 
 const Characters = mongoose.model('character', CharactersSchema)

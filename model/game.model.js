@@ -37,8 +37,21 @@ Game.count({}, function (err, count) {
             imagePath: 'https://static-cdn.jtvnw.net/ttv-boxart/Overwatch.jpg',
             characters: [
                 {
-                    name: 'Dva',
+                    name: 'D.VA',
                     description: 'Amazing Robot',
+                    imagePath: 'https://i.pinimg.com/564x/43/ee/30/43ee3019b64c5e0397233e00da670456--overwatch-wallpapers-kawaii-anime.jpg',
+                    details: []
+                },
+                {
+                    name: 'Soldier 76',
+                    description: 'The favorite character of Tom (aka The Green Arrow)',
+                    imagePath: 'https://img00.deviantart.net/fbad/i/2015/275/d/f/soldier76___overwatch_by_plank_69-d9bm9d3.png',
+                    details: []
+                },
+                {
+                    name: 'Mercy',
+                    description: 'Healing Angel',
+                    imagePath: 'https://cdn3.dualshockers.com/wp-content/uploads/2017/09/overwatch-mercy.jpg',
                     details: []
                 }
 
@@ -50,6 +63,7 @@ Game.count({}, function (err, count) {
 
             name: 'D.VA',
             description: 'Love D.VA',
+            imagePath: 'https://d1u1mce87gyfbn.cloudfront.net/media/thumbnail/dva-cosplay.jpg'
         });
         game.characters[0].details.push(character);
         character.save();

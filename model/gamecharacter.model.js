@@ -7,6 +7,7 @@ const GamecharacterSchema = new Schema({
         require: true
     },
     description: String,
+    imagePath: String,
     details: [{
         type: Schema.Types.ObjectId,
         ref: 'character'
