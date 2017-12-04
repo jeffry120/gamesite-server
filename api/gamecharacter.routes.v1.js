@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
-const mongodb = require('../config/dbMongo');
-const characters = require('../model/characters');
+const mongodb = require('../config/mongo.db');
+const gamecharacters = require('../model/gamecharacter.model');
 
 routes.get('/gamecharacter', function (req, res) {
     res.contentType('application/json');
