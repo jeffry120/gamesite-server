@@ -6,7 +6,7 @@ const characters = require('../model/characters');
 routes.get('/gamecharacter', function (req, res) {
     res.contentType('application/json');
     res.status(200).json({
-        character: 'test'
+        character: 'Overwatch'
     })
 
 });
