@@ -58,6 +58,36 @@ Game.count({}, function (err, count) {
             ],
             creators: ['Blizzard']
         });
+        const game2 = new Game({
+            name: 'Final Fantasy',
+            description: 'Enter an era of war within the world of Ivalice. The small kingdom of Dalmasca, conquered by the Archadian Empire, is left in ruin and uncertainty. Princess Ashe, the one and only heir to the throne, devotes herself to the resistance to liberate her country. Vaan, a young man who lost his family in the war, dreams of flying freely in the skies. In a fight for freedom and fallen royalty, join these unlikely allies and their companions as they embark on a heroic adventure to free their homeland. ',
+            imagePath: 'http://image.gamersky.com/zqimg/ff12/image/cover1_b.jpg',
+            characters: [
+                {
+                    name: 'Balthier',
+                    description: 'Balthier holds allegiance to no crown, or counsel. A man of wit and charm, he prowls the sky\'s of Ivalice with his partner Fran, in search of treasure. But perhaps he is searching for something more...',
+                    imagePath: 'https://cdn.shopify.com/s/files/1/1893/4781/products/BalthierOriginalArt_345x@2x.png?v=1498682855',
+                    details: []
+                },
+                {
+                    name: 'Fran',
+                    description: 'Fran is Viera, and has an intense sensitivity to the mist. It will affect her drastically, and can make her a force to reckon with.\n' +
+                    'Fran is the loyal partner of fellow sky pirate Balthier. With her top notch mastery of weapons, she is also a great mechanic.\n' +
+                    'Longing to learn of the greater world, she abandoned her forest home, and sought out greater meaning. But has she truly lost the voice of her home?',
+                    imagePath: 'https://pbs.twimg.com/media/ChoZJcaVIAQ2uaB.png',
+                    details: []
+                },
+                {
+                    name: 'Basch',
+                    description: 'Basch was a great leader in Dalmasca. Captain of the order of knights, he swore to protect the king at all costs. The official word is that Basch assassinated the king, when he saw the attempt to gain peace with Archadia.\n' +
+                    'But is this the truth, or is it false?',
+                    imagePath: 'http://i.imgur.com/uIEwgnJ.jpg',
+                    details: []
+                }
+
+            ],
+            creators: ['Square Enix']
+        });
 
         const character = new CharactersSchema({
 
@@ -65,9 +95,11 @@ Game.count({}, function (err, count) {
             description: 'Love D.VA',
             imagePath: 'https://d1u1mce87gyfbn.cloudfront.net/media/thumbnail/dva-cosplay.jpg'
         });
+
         game.characters[0].details.push(character);
         character.save();
         game.save();
+        game2.save();
     }
 
 
