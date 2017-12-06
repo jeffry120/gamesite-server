@@ -19,8 +19,11 @@ const GameSchema = new Schema({
     },
     imagePath: String,
     characters: [GamecharacterSchema],
-    creators: [],
-    platform: [PlatformSchema]
+    creators: {
+        type: String,
+        required: true
+    },
+    platforms: [PlatformSchema]
 
 });
 
@@ -63,9 +66,12 @@ Game.count({}, function (err, count) {
                 }
 
             ],
-            platform: [
+            platforms: [
                 {
                     name: 'PC'
+                },
+                {
+                    name: 'Playstation'
                 }
             ],
             creators: ['Blizzard']
@@ -99,9 +105,12 @@ Game.count({}, function (err, count) {
                 }
 
             ],
-            platform: [
+            platforms: [
                 {
                     name: 'Playstation 4'
+                },
+                {
+                    name: 'PC'
                 }
             ],
             creators: ['Square Enix']
