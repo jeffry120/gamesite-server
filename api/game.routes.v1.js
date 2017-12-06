@@ -20,7 +20,7 @@ routes.get('/games/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
     console.log(id);
-    games.find({_id: id})
+    games.findOne({_id: id})
         .populate('gamecharacter.characters')
         .then((games) => {
             res.status(200).send(games

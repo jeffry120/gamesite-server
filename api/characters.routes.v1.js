@@ -17,7 +17,7 @@ routes.get('/characters/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
     console.log(id);
-    characters.find({_id: id})
+    characters.findOne({_id: id})
         .then((characters) => {
             res.status(200).send(characters);
         })

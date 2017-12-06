@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const CharactersSchema = require('./characters.model')
 const GamecharacterSchema = require('./gamecharacter.model')
+const PlatformSchema = require('./platform.model')
 
 const GameSchema = new Schema({
     name: {
@@ -18,7 +19,8 @@ const GameSchema = new Schema({
     },
     imagePath: String,
     characters: [GamecharacterSchema],
-    creators: []
+    creators: [],
+    platform: [PlatformSchema]
 
 });
 
@@ -45,21 +47,26 @@ Game.count({}, function (err, count) {
                     name: 'D.VA',
                     description: 'Amazing Robot',
                     imagePath: 'https://i.pinimg.com/564x/43/ee/30/43ee3019b64c5e0397233e00da670456--overwatch-wallpapers-kawaii-anime.jpg',
-                    details: []
+                    //details: []
                 },
                 {
                     name: 'Soldier 76',
                     description: 'The favorite character of Tom (aka The Green Arrow)',
                     imagePath: 'https://img00.deviantart.net/fbad/i/2015/275/d/f/soldier76___overwatch_by_plank_69-d9bm9d3.png',
-                    details: []
+                    //details: []
                 },
                 {
                     name: 'Mercy',
                     description: 'Healing Angel',
                     imagePath: 'https://cdn3.dualshockers.com/wp-content/uploads/2017/09/overwatch-mercy.jpg',
-                    details: []
+                    //details: []
                 }
 
+            ],
+            platform: [
+                {
+                    name: 'PC'
+                }
             ],
             creators: ['Blizzard']
         });
@@ -73,7 +80,7 @@ Game.count({}, function (err, count) {
                     name: 'Balthier',
                     description: 'Balthier holds allegiance to no crown, or counsel. A man of wit and charm, he prowls the sky\'s of Ivalice with his partner Fran, in search of treasure. But perhaps he is searching for something more...',
                     imagePath: 'https://cdn.shopify.com/s/files/1/1893/4781/products/BalthierOriginalArt_345x@2x.png?v=1498682855',
-                    details: []
+                    //details: []
                 },
                 {
                     name: 'Fran',
@@ -81,16 +88,21 @@ Game.count({}, function (err, count) {
                     'Fran is the loyal partner of fellow sky pirate Balthier. With her top notch mastery of weapons, she is also a great mechanic.\n' +
                     'Longing to learn of the greater world, she abandoned her forest home, and sought out greater meaning. But has she truly lost the voice of her home?',
                     imagePath: 'https://pbs.twimg.com/media/ChoZJcaVIAQ2uaB.png',
-                    details: []
+                    //details: []
                 },
                 {
                     name: 'Basch',
                     description: 'Basch was a great leader in Dalmasca. Captain of the order of knights, he swore to protect the king at all costs. The official word is that Basch assassinated the king, when he saw the attempt to gain peace with Archadia.\n' +
                     'But is this the truth, or is it false?',
                     imagePath: 'http://i.imgur.com/uIEwgnJ.jpg',
-                    details: []
+                   //details: []
                 }
 
+            ],
+            platform: [
+                {
+                    name: 'Playstation 4'
+                }
             ],
             creators: ['Square Enix']
         });
@@ -98,7 +110,7 @@ Game.count({}, function (err, count) {
         const character = new CharactersSchema({
 
             name: 'D.VA',
-            description: 'Love D.VA',
+            description: 'D.VA',
             imagePath: 'https://d1u1mce87gyfbn.cloudfront.net/media/thumbnail/dva-cosplay.jpg'
         });
 
