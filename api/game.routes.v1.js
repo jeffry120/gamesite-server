@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const mongodb = require('../config/mongo.db');
+var neo4j = require('../config/neo4j.db');
 const games = require('../model/game.model');
 const mongoose = require('mongoose');
 
@@ -32,7 +33,6 @@ routes.get('/games/:id', function(req, res) {
 
 routes.post('/games', function(req, res) {
     const gameProps = req.body;
-
     games.create(gameProps)
         .then((games) => {
         res.status(200).send(games)
