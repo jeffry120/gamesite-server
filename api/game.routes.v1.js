@@ -20,7 +20,12 @@ routes.get('/games', function(req, res) {
 routes.get('/games/:id', function(req, res) {
     res.contentType('application/json');
     const id = req.param('id');
-    console.log(id);
+    //const genre = req.query.genre;
+    //
+    // neo4j.cypher({
+    //     query: 'MATCH (game :Game { genre: $genre }) RETURN game',
+    //     params: {genre: genre}
+    // }),
     games.findOne({_id: id})
         .populate('gamecharacter.characters')
         .then((games) => {
@@ -33,6 +38,16 @@ routes.get('/games/:id', function(req, res) {
 
 routes.post('/games', function(req, res) {
     const gameProps = req.body;
+    // const name = req.query.name;
+    // const description = req.query.description;
+    // const genre = req.query.genre;
+    // const creators = req.query.creators;
+    //
+    // neo4j.cypher({
+    //     query: 'CREATE (game : Game {name: $name, description: $description, genre: $genre, creators: $creators})'
+    //     + 'RETURN game',
+    //     params: { name: name, description: description, genre: genre, creators: creators }
+    // }),
     games.create(gameProps)
         .then((games) => {
         res.status(200).send(games)

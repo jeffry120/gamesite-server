@@ -27,6 +27,10 @@ const GameSchema = new Schema({
 
 });
 
+GameSchema.pre('findByIdAndRemove', function(callback){
+    console.log('werkt')
+    this.model('characters').remove({_id: this._id}, callback);
+});
 
 const Game = mongoose.model('game', GameSchema);
 
@@ -68,10 +72,12 @@ Game.count({}, function (err, count) {
             ],
             platforms: [
                 {
-                    name: 'PC'
+                    name: 'PC',
+                    model: 'Pc'
                 },
                 {
-                    name: 'Playstation'
+                    name: 'Playstation',
+                    model: 'PS Pro'
                 }
             ],
             creators: ['Blizzard']
@@ -107,10 +113,12 @@ Game.count({}, function (err, count) {
             ],
             platforms: [
                 {
-                    name: 'Playstation 4'
+                    name: 'Playstation 4',
+                    model: 'PS4, PS4 slim, PS4 Pro'
                 },
                 {
-                    name: 'PC'
+                    name: 'PC',
+                    model: 'PC'
                 }
             ],
             creators: ['Square Enix']
