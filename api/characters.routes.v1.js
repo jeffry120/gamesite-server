@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const mongodb = require('../config/mongo.db');
-const characters = require('../model/characters.model');
+const characters = require('../model/gamecharacter.model');
 const mongoose = require('mongoose');
 
 routes.get('/characters', function(req, res) {
@@ -27,9 +27,9 @@ routes.get('/characters/:id', function(req, res) {
 routes.post('/characters', function(req, res) {
     const charactersProps = req.body;
 
-    games.create(charactersProps)
-        .then((games) => {
-            res.status(200).send(games)
+    characters.create(charactersProps)
+        .then((characters) => {
+            res.status(200).send(characters)
         })
         .catch((error) => res.status(400).json(error))
 });

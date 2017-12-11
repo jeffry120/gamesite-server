@@ -37,7 +37,6 @@ app.use(function (req, res, next) {
 
 app.use('/api/v1', gameroutes_v1);
 app.use('/api/v1', characterroutes_v1);
-app.use('/api/v1', gamecharacterroutes_v1)
 
 
 app.use(function (err, req, res, next) {

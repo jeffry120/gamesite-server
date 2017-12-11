@@ -8,11 +8,9 @@ const GamecharacterSchema = new Schema({
     },
     description: String,
     imagePath: String,
-    details: [{
-        type: Schema.Types.ObjectId,
-        ref: 'character'
-    }]
+
 });
 
+const Gamecharacter = mongoose.model('character', GamecharacterSchema)
 
-module.exports = GamecharacterSchema;
+module.exports = Gamecharacter;

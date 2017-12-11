@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 routes.get('/games', function(req, res) {
     res.contentType('application/json');
     games.find({})
-        .populate('gamecharacter.characters')
+        .populate({
+            path: 'characters'
+        })
         .then((games) => {
         console.log(games[0].characters[0]);
         res.status(200).json(games);
@@ -27,7 +29,9 @@ routes.get('/games/:id', function(req, res) {
     //     params: {genre: genre}
     // }),
     games.findOne({_id: id})
-        .populate('gamecharacter.characters')
+        .populate({
+            path: 'characters'
+        })
         .then((games) => {
             res.status(200).send(games
             );
