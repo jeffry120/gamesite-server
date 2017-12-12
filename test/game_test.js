@@ -31,7 +31,7 @@ describe('Reading games out of the database', () => {
         done();
     });
 });
-//
+
 // describe('Reading characters out of the database', () => {
 //     let gamecharacter;
 //

@@ -30,6 +30,7 @@ routes.get('/gamesrel/:genre', function(req, res) {
             session.close();
         });
 });
+
 routes.get('/games', function(req, res) {
     res.contentType('application/json');
     games.find({})
@@ -51,8 +52,7 @@ routes.get('/games/:id', function(req, res) {
             path: 'characters'
         })
         .then((games) => {
-            res.status(200).send(games
-            );
+            res.status(200).send(games);
         })
         .catch((error) => res.status(400).json(error));
 });
