@@ -5,8 +5,8 @@ var logger = require('morgan');
 var mongodb = require('./config/mongo.db');
 var gameroutes_v1 = require('./api/game.routes.v1');
 var characterroutes_v1 = require('./api/characters.routes.v1');
-var gamecharacterroutes_v1 = require('./api/gamecharacter.routes.v1');
 var config = require('./config/env/env');
+var neo4j = require('neo4j-driver').v1;
 
 
 var app = express();

@@ -5,13 +5,7 @@ const PlatformSchema = new Schema({
     name: {
         type: String,
         required: true
-    },
-    model: {
-        type: String,
-        required: true
     }
-
-
 });
 
 module.exports = PlatformSchema;
