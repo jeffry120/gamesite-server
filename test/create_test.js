@@ -5,7 +5,7 @@ const Platform = require('../model/platform.model');
 
 describe('Creating game records', () => {
     it('saves a game', (done) => {
-        const game = new Game({ name: 'Test', genre: 'FPS', description: 'description' });
+        const game = new Game({ name: 'Test', genre: 'FPS', description: 'description', creators: 'Blizzard' });
 
         game.save()
             .then(() => {
@@ -17,11 +17,11 @@ describe('Creating game records', () => {
 
 describe('Creating character records', () => {
     it('saves a character', (done) => {
-        const game = new Game({ characters: [{name: 'test'}]  });
+        const character = new GamecharacterSchema({ name: 'harry'  });
 
-        game.save()
+        character.save()
             .then(() => {
-                assert(!game.isNew);
+                assert(!character.isNew);
             });
         done();
     });

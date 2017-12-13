@@ -7,7 +7,7 @@ describe('Deleting a game', () => {
     let game;
 
     beforeEach((done) => {
-        game = new Game({ name: 'Test', genre: 'FPS', description: 'description' });
+        game = new Game({ name: 'Test', genre: 'FPS', description: 'description', creators: 'Blizzard' });
         game.save()
             .then(() => done());
     });

@@ -7,7 +7,7 @@ describe('Updating records', () => {
     let game;
 
     beforeEach((done) => {
-        game = new Game({name: 'Test', genre: 'FPS', description: 'description'});
+        game = new Game({name: 'Test', genre: 'FPS', description: 'description', creators: 'Blizzard'});
         game.save()
             .then(() => done());
     });
@@ -21,7 +21,7 @@ describe('Updating records', () => {
             });
         done();
     }
-});
+
 
     it('A model class can find a record with an Id and update', (done) => {
         console.log();
@@ -31,7 +31,7 @@ describe('Updating records', () => {
         );
 
     });
-
+});
 
 // describe('Updating records', () => {
 //     let character;

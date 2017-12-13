@@ -8,7 +8,7 @@ describe('Reading games out of the database', () => {
     let gamecharacter;
 
     beforeEach=((done) => {
-        game = new Game({ name: 'Overwatch' });
+        game = new Game({ name: 'Overwatch', creators: 'Blizzard'});
         game.save()
             .then(() => done());
 
@@ -24,7 +24,7 @@ describe('Reading games out of the database', () => {
     });
 
     it('find a game with a particular id', (done) => {
-        Game.findOne({ _id: game._id })
+        Game.findOne({ _id: game.id })
             .then((game) => {
                 assert(game.name === 'Overwatch');
             });
