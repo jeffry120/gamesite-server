@@ -32,6 +32,7 @@ routes.get('/gamesrel/:genre', function(req, res) {
 });
 
 routes.get('/games', function(req, res) {
+    console.log('getGamesDatabase');
     res.contentType('application/json');
     games.find({})
         .populate({
