@@ -71,17 +71,34 @@ routes.post('/games', function(req, res) {
             var id = games._id.toString();
             var imagePath = games.imagePath;
             var genre = games.genre;
+            var platforms = games.platforms
+            var platforms2 = games.platforms2
             session
                 //("CREATE(g:Genre {genre: {genreParam}})-[:have_genre]->(g)"
-                .run("MATCH (g:Genre {genre: {genreParam}})" + " CREATE(n:Game {name: {nameParam}, id: {idParam}, imagePath: {imagePathParam}})-[:has_genre]->(g)", {genreParam: genre, nameParam: name, idParam: id, imagePathParam: imagePath }).then(function () {
+                .run(
+                    "MATCH (g:Genre {genre: {genreParam}}), (p:Platform {name: {platformParam}})" +
+                    "CREATE(n:Game {name: {nameParam}, id: {idParam}, imagePath: {imagePathParam}})-[:has_platform]->(p),(n)-[:has_genre]->(g)",
+                    {platformParam: platforms, genreParam: genre, nameParam: name, idParam: id, imagePathParam: imagePath }
+                    )
+                .then(function () {
                 console.log('done');
-                session.close();
-
-            }).catch((error) => console.log(error));
-            res.status(200).send(games)
+                session
+               .run(
+                   "MATCH (n:Game {name: {nameParam}}), (p:Platform {name: {platformParam}})" +
+                        "CREATE(n)-[:has_platform]->(p)",
+                        {platformParam: platforms2, nameParam: name}
+                    )
+                        .then(function () {
+                                console.log('done');
+                            }
+                        )
+                    session.close();
+                    res.status(200).send(games)
+                })
+                .catch((error) => res.status(400).json(error))
         })
         .catch((error) => res.status(400).json(error))
-});
+}),
 
 
 routes.put('/games/:id', function(req, res) {
@@ -90,26 +107,49 @@ routes.put('/games/:id', function(req, res) {
     const gameProps = req.body;
 
     games.findByIdAndUpdate({_id: gameId}, gameProps)
-        .then(()=> games.findById({_id: gameId}))
+        .then(() => games.findById({_id: gameId}))
         .then((game) => {
             var session = driver.session();
             var name = game.name;
             var genre = game.genre;
+            var platform = game.platforms
+            var platform2 = game.platforms2
             console.log(name);
             console.log(genre);
             session
-                .run("MATCH (n:Game {name: {nameParam}})-[rel:has_genre]->(), (m:Genre {genre: {genreParam}}) DELETE rel CREATE (n)-[:has_genre]->(m)", {nameParam: name, genreParam: genre})
+                .run(
+                    "MATCH (n:Game {name: {nameParam}})-[rel:has_genre|has_platform]->() DELETE rel ",
+                    {nameParam: name}
+                )
                 .then(function () {
                     console.log('done');
+                    session
+                        .run(
+                            "MATCH (n:Game {name: {nameParam}}), (m:Genre {genre: {genreParam}}), (p:Platform {name: {platformParam}})" +
+                            "CREATE (n)-[:has_genre]->(m) Create (n)-[:has_platform]->(p)",
+                            {nameParam: name, genreParam: genre, platformParam: platform}
+                        )
+                        .then(function () {
+                                console.log('done');
+                            }
+                        )
+                    session
+                        .run(
+                            "MATCH (n:Game {name: {nameParam}}), (p:Platform {name: {platformParam}})" +
+                            "CREATE(n)-[:has_platform]->(p)",
+                            {platformParam: platform2, nameParam: name}
+                        )
+                        .then(function () {
+                                console.log('done');
+                            }
+                        )
                     session.close();
-                }).catch((error) => console.log(error));
-            res.send(game)
+                    res.status(200).send(game)
+                })
+                .catch((error) => res.status(400).json(error))
         })
-        .catch((error) => res.status(400).json(error))
-
-
-});
-
+    .catch((error) => res.status(400).json(error))
+}),
 
 routes.delete('/games/:id', function(req, res) {
     const id = req.param('id');

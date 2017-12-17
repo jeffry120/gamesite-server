@@ -21,16 +21,20 @@ const GameSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'character'
     }],
-    creators: {
+    platforms: {
         type: String,
         required: true
     },
-    platforms: [PlatformSchema]
+    platforms2: {
+        type: String,
+        required: true
+    },
+    creators: [PlatformSchema]
 
 });
 
 GameSchema.pre('findByIdAndRemove', function(callback){
-    console.log('werkt')
+    console.log('done')
     this.model('characters').remove({_id: this._id}, callback);
 });
 
